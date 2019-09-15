@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './Header';
 import DataList from './DataList';
+import Status from './Status';
 import Filters from './Filters';
 import Footer from './Footer';
 
@@ -47,7 +48,17 @@ const hackedData = [
 class Page extends React.Component {
   constructor(props) {
     super(props);
+    this.state={
+      coincidences: 0
     }
+    this.updateCoincidences = this.updateCoincidences.bind(this);
+  }
+
+  updateCoincidences(coincidencesNumber) {
+    this.setState({
+      coincidences: coincidencesNumber
+    })
+  }
 
   render() {
     return (
@@ -55,6 +66,11 @@ class Page extends React.Component {
         <Header />
         <Filters 
           hackedData = {hackedData}
+          onFilterData = {this.updateCoincidences}
+        />
+        
+        <Status
+          coincidences = {this.state.coincidences}
         />
         <DataList 
           hackedData = {hackedData}

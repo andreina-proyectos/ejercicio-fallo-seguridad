@@ -23,6 +23,9 @@ class Filters extends React.Component {
         phraseEmail: filterResultdata.length > 0 ? 'Tu email ha sido comprometido' : 'Estás de suerte, tu email está seguro'
       }
     );
+
+    // update parent
+    this.props.onFilterData(filterResultdata.length)
   }
 
   render() {
