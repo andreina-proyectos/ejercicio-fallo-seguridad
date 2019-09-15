@@ -42,7 +42,24 @@ const hackedData = [
 function App() {
   return (
     <div className="App">
-  
+      <ul className="hacked-list">
+        {
+          hackedData.map(
+            dataItem => {
+              return (
+                <fragment>
+                  <li className="hacked-list__element">{dataItem.name}</li>
+                  <li className="hacked-list__element">{dataItem.email}</li>
+                  <li className="hacked-list__element">{dataItem.passwords.join(' + ')}</li>
+                  <li className="hacked-list__element">{dataItem.bank.iban}</li>
+                  <li className="hacked-list__element">{dataItem.bank.pin}</li>
+                  <br/>
+                </fragment>
+              )
+            }
+          )
+        }
+      </ul>
     </div>
   );
 }
