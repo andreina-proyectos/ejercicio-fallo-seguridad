@@ -49,8 +49,18 @@ class Page extends React.Component {
   constructor(props) {
     super(props);
     this.state={
-      coincidences: 0
+      coincidences: 0,
+      dataFromApi: []
     }
+
+    fetch('https://raw.githubusercontent.com/Adalab/m3-tutoria-2/master/assets/data/bulk.json')
+  .then((response)  => {
+    return response.json();
+  })
+  .then((data) => {
+    this.setState({dataFromApi:data.data})
+  });
+  
     this.updateCoincidences = this.updateCoincidences.bind(this);
   }
 
@@ -65,7 +75,7 @@ class Page extends React.Component {
       <div className="Page">
         <Header />
         <Filters 
-          hackedData = {hackedData}
+          hackedData = {this.state.dataFromApi}
           onFilterData = {this.updateCoincidences}
         />
         
@@ -73,7 +83,8 @@ class Page extends React.Component {
           coincidences = {this.state.coincidences}
         />
         <DataList 
-          hackedData = {hackedData}
+         
+          hackedData = {this.state.dataFromApi}
         />
         <Footer />
       </div>
